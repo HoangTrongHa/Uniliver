@@ -1,0 +1,33 @@
+---
+include:
+  - &template_repo_include
+    project: bang-digital/devops/templates
+    ref: feature/pipelines-rework
+    file: common-stages.yml
+  - <<: *template_repo_include
+    file: workflow.yml
+  - <<: *template_repo_include
+    file: common-lint.yml
+  - <<: *template_repo_include
+    file: docker-build.yml
+  - <<: *template_repo_include
+    file: swarm-deploy-runner.yml
+
+variables:
+  LINTER_EXCLUDE_REGEX: "(tsconfig.json)"
+
+build:
+  extends:
+    - .build_docker_image
+
+tests:
+  stage: test
+  image: $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
+  script:
+    - curl -sI app:3000 | tee -a /tmp/response.txt
+    - grep -q '200 OK' /tmp/response.txt
+  services:
+    - name: $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
+      alias: app
+  rules:
+    - if: '$DOCKER_IMAGE_TAG'

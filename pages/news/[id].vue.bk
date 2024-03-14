@@ -1,0 +1,484 @@
+<script setup>
+const dataPage = reactive({})
+useAsyncData('fetch', async () => {
+    try {
+        dataPage.value = await useApiFetch('news.element', 'kak-my-pomozhem-postroit-bolee-spravedlivoe-obshchestvo-predostavlyayushchee-ravnye-vozmozhnosti-dlya');
+        useHead(dataPage.value?.result?.seo)
+    } catch (e) {
+        console.error(e);
+    }
+})
+</script>
+
+<template>
+    <div class="font-montserrat-alternates">
+        <div class="w-full bg-blue-90 text-white text-xs flex items-center gap-6 p-6 overflow-hidden">
+            <template v-for="(item, index) in dataPage.value?.result?.breadcrumbs" :key="item.name">
+                <nuxt-link :to="item?.path || ''" :class="{
+                    'underline': index != dataPage.value?.result?.breadcrumbs.length - 1
+                }">{{ item.name }}</nuxt-link>
+                <icons-left-icon fill="#44D2F3" v-if="index != dataPage.value?.result?.breadcrumbs.length - 1" />
+            </template>
+        </div>
+        <section class="sm:py-18 py-[56px]">
+            <div class="mb-6 xl:px-[370px] md:px-32 px-4">
+                <h1 class="text-blue-80 sm:text-[44px] text-[32px] font-montserrat-alternates-bold sm:pb-4 pb-3 border-b-2">
+                    Clear: from anti-dandruff shampoo brand to scalp care expert
+                </h1>
+                <div class="w-full h-auto flex mt-5 mb-3">
+                    <span class="text-xs text-black-40 leading-4 mr-6">
+                        18 July 2023
+                    </span>
+                    <span class="inline-flex items-center">
+                        <div class="w-4 h-4 mr-2">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_598_19823)">
+                                    <path
+                                        d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346629 6.40034 -0.15496 8.00887 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0ZM9.94815 11.8785L7.40741 8.44444C7.31124 8.31622 7.25926 8.16027 7.25926 8V1.88H8.74074V7.75555L11.1393 11.003L9.94815 11.8785Z"
+                                        fill="#858380" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_598_19823">
+                                        <rect width="16" height="16" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-black-40 leading-4"> 4 минуты </span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="xl:px-[320px] md:px-28 px-4 sm:mb-[40px] mb-[32px]">
+                <img class="w-full" src="~/assets/images/news/new-banner-1.png"
+                    alt="Clear: from anti-dandruff shampoo brand to scalp care expert" />
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <p class="text-sm leading-6 list-disc text-black-40">
+                    It’s the world’s best-selling shampoo for men and the No.1
+                    anti-dandruff shampoo brand in three of our biggest haircare markets.
+                    Here’s how scalp care innovation, purpose and proven results are
+                    boosting Clear’s growth.
+                </p>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-4">
+                    How it started
+                </h3>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Clear made its debut as a small anti-dandruff shampoo brand in Italy
+                    in 1975. Back then it was sold as Clinic, before re-launching as Clear
+                    in 1982 and reaching markets all over the world. Specialising in scalp
+                    care technology developed by scientists at the Clear Institute in
+                    Paris, Clear became the first shampoo brand to address recurrent
+                    dandruff by treating the scalp.
+                </p>
+
+                <img class="w-full mb-4" src="~/assets/images/news/new-banner-2.png" alt="banner-2" />
+
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    The brand’s pioneering work to explore the difference between male and
+                    female scalp biology led to a new wave of customised solutions. Acting
+                    on the insight that men’s scalps produce 60% more sebum than women’s,
+                    Clear created targeted products to deliver rapid, long-lasting
+                    dandruff prevention, and dermatologists endorsed its results.
+                </p>
+
+                <p class="text-sm leading-6 list-disc text-black-40">
+                    From the outset, Clear broke the mould for anti-dandruff shampoo
+                    advertising, standing out from competitors by featuring celebrities in
+                    commercials and focusing on resilience and results rather than the
+                    fear of flakes.
+                </p>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-4">
+                    How it’s going
+                </h3>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Clear has grown consistently for the past three years (post-pandemic)
+                    and is now the world’s No.1 male shampoo brand,* and the No.1
+                    anti-dandruff shampoo in three of Unilever’s biggest haircare markets:
+                    South-East Asia, Brazil and Turkey.
+                </p>
+
+                <img class="w-full mb-4" src="~/assets/images/news/new-banner-3.png" alt="banner-2" />
+
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Sold in more than 60 markets across the globe, Clear has evolved
+                    beyond dandruff removal to address holistic scalp problems. It’s an
+                    authority on all types of scalp care, with products in the range
+                    addressing a spectrum of consumer needs from deep cleansing,
+                    nourishment, itchy scalp and grease to sophisticated new treatments
+                    which help prevent hair fall from the roots.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Designed by scalp care experts, every product in the portfolio
+                    combines unbeatable dandruff performance with clinically proven scalp
+                    skincare technology to boost resilience against internal and external
+                    scalp aggressors.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    As the first brand to introduce customised anti-dandruff solutions for
+                    men, Clear has been leading the expansion of the male shampoo category
+                    with strong results. The brand’s entire core men’s shampoo line is now
+                    enriched with sunflower seed oil and glycine, ingredients designed to
+                    strengthen men’s weaker scalp skin barrier and help prevent recurring
+                    dandruff.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40">
+                    Worldwide, Clear’s best-seller is the Clear Men Cool Sport Menthol
+                    shampoo, a product designed to remove, resist and prevent dandruff
+                    while providing a cooling sensation that keeps the hair and scalp
+                    feeling fresh. And Cristiano Ronaldo, renowned as one of the greatest
+                    footballers of all time, has been a Clear spokesman for many years and
+                    collaborated with the brand to co-create the Clear Men Legend Shampoo
+                    by CR7 – a product advertised as the ‘best-ever Clear shampoo for
+                    men’.
+                </p>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-4">
+                    The purpose that powers it
+                </h3>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Growing social anxiety, especially performance anxiety, is affecting
+                    young people’s mental wellbeing all over the world. It impacts their
+                    stress levels, their confidence – and their scalp health.
+                </p>
+
+                <img class="w-full mb-4" src="~/assets/images/news/new-banner-4.png" alt="banner-2" />
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    That’s why Clear is a brand built on clear-head confidence – and its
+                    purpose is all about empowering people with a clear head and boosting
+                    their performance in life.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Recurring scalp problems are more than skin deep. They can worsen
+                    social anxiety, while daily stress may also trigger dandruff and scalp
+                    problems. It’s a cycle which Clear wants to empower everyone to break,
+                    so they can face anxiety head-on and perform at their best.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Clear’s approach goes beyond simply eliminating dandruff. Its formulas
+                    also focus on preventing its return, promoting a problem-free, fresh,
+                    resilient scalp. The brand’s ads are a source of empowerment, not
+                    anxiety, recognising that stereotypes can contribute to feelings of
+                    anxiety and perpetuate negative self-perception. That’s why Clear’s
+                    communications don’t depict people embarrassed by their dandruff or
+                    scalp conditions. The conversation is more around taking action and
+                    feeling confident in Clear’s proven efficacy.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Clear has also partnered with the Resilience Research Centre since
+                    2021 on its Clear Head Project – an initiative designed to empower
+                    young people who are navigating an epidemic of anxiety. The goal:
+                    equipping them with self-efficacy, enabling them to manage challenging
+                    emotions and, as a result, experience reduced dandruff.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Clear relaunched its purpose in China earlier this year with a music
+                    video starring pop singer and Clear ambassador Jackson Yi. The film
+                    received more than 200 million impressions and attracted engagement
+                    from over 1 million fans during a live-stream launch event.
+                </p>
+                <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                    Watch the video below.
+                </p>
+
+                <div class="w-full h-auto">
+                    <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/GSkZ_FoIvyQ"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-4">
+                    The purpose that powers it
+                </h3>
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span
+                            class="w-8 h-10 shrink-0 text-[#20A980] flex items-center justify-center text-[40px] font-montserrat-alternates-bold font-bold">
+                            1
+                        </span>
+                        <div class="grow w-[1px] h-full bg-[#20A980] mt-3"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Niacinamide-boosted anti-dandruff shampoo
+                        </h3>
+                        <img class="w-full mb-4" src="~/assets/images/news/new-banner-5.png" alt="banner-5" />
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            Clear recently launched the first clinically proven anti-dandruff
+                            formula powered by niacinamide concentrate, delivering 100%
+                            protection against returning dandruff.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            Clear’s core range has now been upgraded to include this key
+                            ingredient, inspired by functional skincare, to repair and
+                            strengthen the scalp’s skin barrier. In doing so, the scalp
+                            benefits from stronger protection against recurring dandruff so
+                            it’s not just using an anti-microbial to remove the flakes, it’s
+                            also providing longer-term results to keep dandruff at bay.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40">
+                            Backed by scientific trials, this new formula is proven to reduce
+                            dandruff return in 28 days.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span
+                            class="w-8 h-10 shrink-0 text-[#20A980] flex items-center justify-center text-[40px] font-montserrat-alternates-bold font-bold">
+                            2
+                        </span>
+                        <div class="grow w-[1px] h-full bg-[#20A980] mt-3"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Ultra performance formula for men
+                        </h3>
+                        <img class="w-full mb-4" src="~/assets/images/news/new-banner-6.png" alt="banner-6" />
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            Engineered specifically for men, who tend to have a greasier,
+                            weaker scalp than women and usually wash their hair more often,
+                            Clear’s core Men’s range was formulated by Unilever scalp
+                            scientists to include a unique combination of potent and
+                            nourishing skincare ingredients.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40">
+                            Men’s more frequent hair washing typically removes vital nutrients
+                            from the scalp, leaving it at risk of dryness. Clear’s mix for men
+                            features glycine, sunflower seed oil and niacinamide as well as
+                            amino acids. Together this exclusive technology not only helps to
+                            remove flakes, but also soothes and strengthens men’s scalp
+                            protection against recurring dandruff.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span
+                            class="w-8 h-10 shrink-0 text-[#20A980] flex items-center justify-center text-[40px] font-montserrat-alternates-bold font-bold">
+                            3
+                        </span>
+                        <div class="grow w-[1px] h-full bg-[#20A980] mt-3"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Preventing hair fall from the scalp with proven results
+                        </h3>
+                        <img class="w-full mb-4" src="~/assets/images/news/new-banner-7.png" alt="banner-7" />
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            With more than 50 years of research on hair and scalp biology,
+                            Clear is perfectly placed to help address hair fall by going
+                            beyond the strands. Instead, its solutions focus on the foundation
+                            of our hair: the scalp.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            The brand’s new Clear Men Scalp Pro Anti Hair Fall and Clear
+                            Scalpceuticals Hair Fall Resist lines are the first Unilever
+                            haircare products to have a special cosmetics licence in China,
+                            meaning they meet extremely strict criteria in terms of efficacy
+                            and claims. The products are clinically proven to reduce hair fall
+                            from the scalp within 30 days. [1] First launched in China in
+                            August 2022, they have since reached Thailand, Turkey and Brazil
+                            in 2023, delivering differentiated scalp care with two powerful
+                            ingredients developed by Unilever scientists: DynoxidilTM and
+                            FollilockTM.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            DynoxidilTM is a potent anti-hair fall technology which combines
+                            root strengthening zinc salt with an active follicle
+                            revitalisation ingredient: yeast peptides extract. By deeply
+                            penetrating hair follicles, it enhances follicle structural
+                            integrity for stronger root anchorage and delivers nourishment to
+                            follicle cells. It’s clinically proven to revitalise hair
+                            follicles and promote faster growing hair.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40">
+                            FollilockTM is an advanced, lab-derived and clinically proven
+                            anti-hair fall mixture that forms the foundation of a healthy
+                            scalp care routine. The scalp care ingredient (piroctone olamine)
+                            combined with root strengthening zinc salt in the shampoo not only
+                            strengthens the scalp barrier and encourages the healthy growth of
+                            hair, but also rebalances proteolytic activity[2], involved in
+                            hair shedding to help reduce excessive hair loss. When combined
+                            with DynoxidilTM, anti-hair fall benefits are enhanced.
+                            FollilockTM is clinically proven to effectively reduce hair fall
+                            after 30 days by strengthening hair anchorage to the scalp.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-4">
+                    Iconic ads
+                </h3>
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span class="w-8 h-8 shrink-0 flex items-center justify-center bg-[#A655BA]">
+                            <img src="/image/icon/lightbulb.svg" alt="icon" />
+                        </span>
+                        <div class="grow w-full h-full bg-[#b55ccb66]"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Clear’s first skincare-boosted anti-dandruff shampoos
+                        </h3>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            Clear’s cutting-edge new formula is a breakthrough in
+                            anti-dandruff science. The next-generation shampoo is enriched
+                            with super-vitamin niacinamide – the first time a functional
+                            skincare ingredient has been used in a shampoo.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            This ad for the women’s range shows how the mix strengthens and
+                            protects the scalp barrier to help prevent dandruff from
+                            returning.
+                        </p>
+                        <div class="w-full h-auto">
+                            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/xD5rSvNAusc"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span class="w-8 h-8 shrink-0 flex items-center justify-center bg-[#A655BA]">
+                            <img src="/image/icon/lightbulb.svg" alt="icon" />
+                        </span>
+                        <div class="grow w-full h-full bg-[#b55ccb66]"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Clear Scalpceuticals
+                        </h3>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            Clear’s Hair Fall range isn’t just for men. This ad for the
+                            brand’s new Clear Scalpceuticals products for women stars former
+                            Miss Universe Dilan Çiçek Deniz.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            The serum in this range is powered by Dynoxidil™ technology,
+                            clinically proven to reduce hair fall by >2,800 strands in 30
+                            days. Using it together with Clear Scalpceuticals shampoo and
+                            conditioner, infused with a blend of antioxidants, can leave hair
+                            10X stronger and more voluminous after the first wash.
+                        </p>
+                        <div class="w-full h-auto">
+                            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/OUHmHzeUEQ8"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 sm:mb-[40px] mb-[32px]">
+                <div class="w-full flex mb-10">
+                    <div class="w-8 flex flex-col items-center">
+                        <span class="w-8 h-8 shrink-0 flex items-center justify-center bg-[#A655BA]">
+                            <img src="/image/icon/lightbulb.svg" alt="icon" />
+                        </span>
+                        <div class="grow w-full h-full bg-[#b55ccb66]"></div>
+                    </div>
+                    <div class="w-[calc(100%-32px)] pl-3">
+                        <h3 class="text-base text-blue-80 font-montserrat-alternates-bold mb-4">
+                            Cristiano Ronaldo’s expert advice
+                        </h3>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            This ad sees Cristiano Ronaldo reflecting on the advice he would
+                            share with his younger self ahead of his first football game.
+                        </p>
+                        <p class="text-sm leading-6 list-disc text-black-40 mb-4">
+                            He says that in life, challenges will keep coming and that you
+                            will need to find power within to keep going. That you must wash
+                            away doubts like you would with dandruff. And that it’s wise to
+                            keep a clear head and show the world who you are.
+                        </p>
+                        <div class="w-full h-auto">
+                            <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/phtenf3XioM"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:px-[370px] md:px-32 px-4 text-black-40 text-xs font-medium">
+                <p class="mb-3">
+                    <span class="font-montserrat-alternates-bold text-blue-80 underline">*</span>
+                    Source: Euromonitor International Limited, Beauty and Personal Care
+                    2023 ed, Retail Value Sales (RSP) 2022 data.
+                </p>
+                <p class="mb-3">
+                    <span class="font-montserrat-alternates-bold text-blue-80 underline">1</span>
+                    According to five clinical studies conducted by Intertek in China on 122 females in 2020; Sino-German
+                    Union Cosmetic Institute (SGCI) on 41 females and 19 males in 2021; SGCI on 60 males in 2021; SGCI on 40
+                    females and 20 males in 2021; Guangzhou Quality Supervision and Testing Institute on 71 males in 2021.
+
+                </p>
+                <p class="mb-3">
+                    <span class="font-montserrat-alternates-bold text-blue-80 underline">2</span>
+                    Proteolytic enzymes (proteases) are enzymes involved in the hair shedding process. They can break down
+                    follicle structure proteins holding hair root anchored to the scalp.
+
+                </p>
+                <p class="">
+                    <span class="font-montserrat-alternates-bold text-blue-80 underline">3</span>
+                    According to clinical studies conducted by Intertek in China, on 122 females in 2019 and SinoGerman,
+                    China, on 60 males in 2022.
+
+                </p>
+            </div>
+        </section>
+
+        <div class="px-4 md:px-14 pt-8 md:pt-10 pb-16 md:pb-18 bg-[#b1dfd3]">
+            <h3 class="text-2xl text-blue-80 font-montserrat-alternates-bold mb-5">
+                Похожие новости
+            </h3>
+            <div class="">
+                <div class="grid xl:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-8 md:gap-10">
+                    <CommonCardNews v-for="item in dataPage.value?.result?.element" v-bind:key="item.name"
+                        v-bind:image="item.image" v-bind:title="item.name" v-bind:postTime="item.active_from"
+                        v-bind:postedAgo="item.read_time" v-bind:link="item.page_url" />
+                </div>
+            </div>
+
+            <div class="w-full h-auto flex items-center justify-center mt-8 md:mt-10">
+                <button
+                    class="w-full md:w-56 h-11 flex items-center justify-center bg-cyan-50 text-blue-80 font-medium cursor-pointer">
+                    <span class="text-sm md:text-[17px] mr-[10px]">
+                        Больше новостей
+                    </span>
+                    <div class="w-3 h-2">
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.99986 7.92489L0.240922 0.0742182L11.7588 0.0742188L5.99986 7.92489Z" fill="#015EFF"
+                                fill-opacity="0.8" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

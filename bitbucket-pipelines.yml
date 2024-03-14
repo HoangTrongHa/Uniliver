@@ -1,0 +1,19 @@
+---
+image: kroniak/ssh-client
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: dev-server
+          script:
+            - ssh web@unilever.omicrondev.ru 'cd /var/www/unilever-ru-frontend && git fetch && git stash && git checkout '"$BITBUCKET_BRANCH"' && git pull && yarn install && yarn run build && pm2 restart all'
+    release/*:
+      - step:
+          name: pre-prod-server
+          script:
+            - ssh -J service@84.201.143.116 service_omicron@10.140.0.6 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" 'cd /var/www/unilever-ru-frontend && git fetch && git stash && git checkout '"$BITBUCKET_BRANCH"' && git pull && yarn install && yarn run build && pm2 restart all'
+    master:
+      - step:
+          name: prod-server
+          script:
+            - ssh -J service@84.201.143.116 service_omicron@10.140.0.5 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" 'cd /var/www/unilever-ru-frontend && git fetch && git stash && git checkout '"$BITBUCKET_BRANCH"' && git pull && yarn install && yarn run build && pm2 restart all'

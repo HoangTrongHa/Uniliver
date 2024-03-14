@@ -1,0 +1,118 @@
+<script setup>
+const dataPage = reactive({})
+useAsyncData('fetch', async () => {
+    try {
+        dataPage.value = await useApiFetch('static.page', { code: 'compas' });
+        useHead(dataPage.value?.result?.seo)
+    } catch (e) {
+        console.error(e);
+    }
+})
+
+const findElementBlockByName = computed(() => {
+    return name => dataPage.value?.result?.element?.blocks.find(item => item.name === name)
+})
+
+const filterElementBlock = computed(() => dataPage.value?.result?.element?.blocks.filter(item => item.name != 'my_banner'))
+
+const groupItemsByType = computed(() => {
+    const result = [];
+    let currentBlock = [];
+    for (const item of dataPage.value?.result?.element?.blocks.filter(item => item.name != 'my_banner')) {
+        if (item.type === "h2") {
+            if (currentBlock.length > 0) {
+                result.push({ block: [...currentBlock] });
+                currentBlock = [];
+            }
+        }
+        currentBlock.push(item);
+    }
+
+    if (currentBlock.length > 0) {
+        result.push({ block: [...currentBlock] });
+    }
+
+    return result;
+})
+</script>
+<template>
+    <div class="font-montserrat-alternates">
+        <breadcrumbs :crumbs="dataPage.value?.result?.breadcrumbs" />
+        <div
+            class="relative sm:max-h-[340px] max-h-[480px] grid grid-cols-1 items-center bg-cyan-50 py-[52.8px] sm:py-[75px] sm:px-[56px] px-4">
+            <div class="absolute top-0 left-0 w-full h-full">
+                <img class="sm:block hidden w-full h-full" :src="findElementBlockByName('my_banner')?.elementList[0]?.image"
+                    alt="Banner">
+                <img class="sm:hidden block  w-full h-full"
+                    :src="findElementBlockByName('my_banner')?.elementList[0]?.mobile_image" alt="Banner">
+            </div>
+            <div class="w-auto 2xl:w-[700px] xl:w-[700px] md:w-[700px] z-10 flex flex-col sm:gap-6 gap-5">
+                <div class="text-blue-80 sm:text-[52px] text-[44px] font-montserrat-alternates-bold leading-[normal]"
+                    v-html="findElementBlockByName('my_banner')?.elementList[0]?.text"></div>
+            </div>
+        </div>
+        <div class="sm:py-18 py-[56px]">
+            <section>
+                <div class="xl:pl-[370px] lg:pl-40 md:pl-32 sm:pl-4 pl-4 xl:pr-14 pr-4">
+                    <div class="flex sm:flex-row flex-col-reverse sm:gap-x-24 gap-0">
+                        <div class="sm:w-2/3 w-full">
+                            <div class="sm:mb-[40px] mb-[32px]" v-for="block in filterElementBlock" :key="block.value">
+                                <div v-if="block.name == 'htag' && block.type == 'h2'" class="sm:mb-4 mb-5">
+                                    <h2 class="text-2xl text-blue-80 font-montserrat-alternates-bold leading-[normal]">
+                                        {{ block.value }}
+                                    </h2>
+                                </div>
+                                <div v-if="block.name == 'my_text' && !block.color.length"
+                                    class="text-sm text-black-40 font-medium leading-[140%] lg:w-[600px] xs:w-[340px] w-auto h-auto"
+                                    v-html="block.value"></div>
+                                <div v-if="block.name == 'my_image'">
+                                    <img :src="block?.file?.SRC" :width="block?.file?.WIDTH" :height="block?.file?.HEIGHT"
+                                        alt="Image">
+                                </div>
+                                <div v-if="block.name == 'my_quote'" class="flex-col bg-black-10 sm:p-6 px-3 py-8 mb-4">
+                                    <div class="flex justify-start">
+                                        <icons-comma-left />
+                                    </div>
+                                    <div v-if="block.text.value.length">
+                                        <div class="text-base text-blue-80 leading-[24px] font-montserrat-alternates-bold p-1"
+                                            v-html="block?.text.value">
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mb-2">
+                                        <icons-comma-right />
+                                    </div>
+                                    <div v-if="block.description.value.length">
+                                        <div class="text-black-40 text-xs leading-[normal] sm:px-0"
+                                            v-html="block?.description?.value"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="sm:w-1/3 w-full sm:my-8 my-5">
+                            <div class="sm:mb-[40px] mb-[32px]" v-for="block in filterElementBlock" :key="block.value">
+                                <div v-if="block.name == 'my_fields'" :style="`background-color: ${block.color}`"
+                                    class="p-[24px] sm:ml-4 ml-0">
+                                    <h5 class="font-montserrat-alternates-bold text-2xl text-blue-80 mb-1">{{
+                                        block.items[0].value }}</h5>
+                                    <nuxt-link :to="block.items[1].files[0].file.SRC" target="_blank"
+                                        class="text-sm text-blue-80 underline group hover:text-blue-90 transition duration-300 ease-in-out">
+                                        <span class="group flex sm:items-center items-start mb-1 gap-1">
+                                            <icons-download-icon class="sm:mt-0 mt-1" />
+                                            {{ block.items[1].files[0].desc }}
+                                        </span>
+                                    </nuxt-link>
+                                </div>
+                                <div v-if="block.name == 'my_text' && block.color.length"
+                                    class="flex flex-col text-white text-base font-montserrat-alternates-medium sm:ml-4 m-0">
+                                    <div class="px-8 sm:h-[120px] h-[60px] sm:py-0 py-[6px] sm:text-base text-sm text-center flex items-center justify-center"
+                                        :style="`background-color: ${block.color}`" v-html="block.value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</template>

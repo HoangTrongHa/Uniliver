@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "Montserrat Alternates";
+    src: url(../fonts/MontserratAlternates-Regular.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat Alternates Bold";
+    src: url(../fonts/MontserratAlternates-Bold.ttf) format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat Alternates Medium";
+    src: url(../fonts/MontserratAlternates-Medium.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates Bold";
+  src: url("../fonts/MontserratAlternates-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat Alternates Medium";
+  src: url("../fonts/MontserratAlternates-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.line-height-3rem {
+  line-height: 3rem !important;
+}
+
+.line-height-35rem {
+  line-height: 3.5rem !important;
+}
+
+
+.link {
+
+}
+.link-download:hover {
+  color: #0066cc;
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
+}
+
+.link-brand {
+
+}

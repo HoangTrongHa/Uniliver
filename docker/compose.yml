@@ -1,0 +1,20 @@
+---
+version: "3.8"
+
+networks:
+  net:
+
+services:
+  frontend:
+    image: $CI_REGISTRY_IMAGE:$DOCKER_IMAGE_TAG
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}_frontend.entrypoints=websecure"
+        - "traefik.http.routers.${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}_frontend.middlewares=dev_auth"
+        - "traefik.http.routers.${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}_frontend.rule=Host(`$ENVIRONMENT_HOST`)"
+        - "traefik.http.routers.${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}_frontend.tls.certresolver=le"
+        - "traefik.http.services.${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}_frontend.loadbalancer.server.port=3000"
+      update_config:
+        order: start-first
+    networks: [net]
